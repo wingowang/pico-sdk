@@ -106,12 +106,11 @@ SECTIONS
         *(.fini_array)
         PROVIDE_HIDDEN (__fini_array_end = .);
  
-         . = ALIGN(4);
+		 . = ALIGN(4);
         /* finit data */
-        PROVIDE_HIDDEN (__init_start = .);
-        *(SORT(.fini_array.*))
-        *(.fini_array)
-        PROVIDE_HIDDEN (__init_end = .);		
+         __init_start = .;
+         KEEP(*(SORT(.init_fn.*)))
+         __init_end = .;	
 
         *(.eh_frame*)
         . = ALIGN(4);

@@ -137,6 +137,13 @@ SECTIONS
         *(.fini_array)
         PROVIDE_HIDDEN (__fini_array_end = .);
 
+	    . = ALIGN(4);
+        /* finit data */
+        PROVIDE_HIDDEN (__init_start = .);
+        *(SORT(.__init_.*))
+        *(.__init_)
+        PROVIDE_HIDDEN (__init_end = .);	
+
         *(.jcr)
         . = ALIGN(4);
    } > RAM
